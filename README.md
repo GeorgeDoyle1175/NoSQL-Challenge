@@ -51,7 +51,6 @@ To test the API routes, use a tool like Insomnia to send HTTP requests to the co
 
 Here is a mock-up demonstrating the usage of the Social Network API:
 
-
 ## Contributing
 
 If you want to contribute to the Social Network API, follow these steps:
@@ -61,11 +60,3 @@ If you want to contribute to the Social Network API, follow these steps:
 3. Make your changes and commit them: `git commit -am 'Add some feature'`
 4. Push the changes to your branch: `git push origin feature/your-feature-name`
 5. Open a pull request.
-
-## License
-
-The Social Network API is licensed under the MIT License. Please see the LICENSE file for more details.
-
-## Contact
-
-If you have any questions or suggestions regarding the Social Network API, feel free to contact us at email@example.com.
