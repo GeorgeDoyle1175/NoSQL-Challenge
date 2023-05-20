@@ -6,27 +6,48 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
       minlength: 1,
-      maxlength: 280
+      maxlength: 280,
     },
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (timestamp) => new Date(timestamp).toISOString()
+      get: (timestamp) => new Date(timestamp).toISOString(),
     },
     username: {
       type: String,
-      required: true
+      required: true,
     },
+    reactions: [
+      {
+        reactionBody: {
+          type: String,
+          required: true,
+          maxlength: 280,
+        },
+        username: {
+          type: String,
+          required: true,
+        },
+        createdAt: {
+          type: Date,
+          default: Date.now,
+          get: (timestamp) => new Date(timestamp).toISOString(),
+        },
+      },
+    ],
   },
   {
     toJSON: {
       virtuals: true,
-      getters: true
+      getters: true,
     },
-    id: false
+    id: false,
   }
 );
-;
+
+thoughtSchema.virtual('reactionCount').get(function () {
+  return this.reactions.length;
+});
 
 const Thought = model('Thought', thoughtSchema);
 
