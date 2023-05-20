@@ -69,6 +69,3 @@ The Social Network API is licensed under the MIT License. Please see the LICENSE
 ## Contact
 
 If you have any questions or suggestions regarding the Social Network API, feel free to contact us at email@example.com.
-
----
-Please note that this README file is a template and should be customized according to the project's specific requirements and details.
