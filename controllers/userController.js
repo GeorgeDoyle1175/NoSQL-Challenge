@@ -1,4 +1,4 @@
-const { User, Thought } = require('../models');
+const { User, Thoughts } = require('../models');
 
 module.exports = {
   // Get all users
@@ -53,7 +53,7 @@ module.exports = {
         }
 
         // Remove the associated thoughts of the user
-        return Thought.deleteMany({ username: user.username });
+        return Thoughts.deleteMany({ username: user.username });
       })
       .then(() => res.json({ message: 'User and associated thoughts deleted!' }))
       .catch((err) => res.status(500).json(err));

@@ -1,16 +1,16 @@
-const { Thought, User } = require('../models');
+const { Thoughts, User } = require('../models');
 
 module.exports = {
   // Get all thoughts
   getThoughts(req, res) {
-    Thought.find()
+    Thoughts.find()
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
 
   // Get a single thought by _id
   getSingleThought(req, res) {
-    Thought.findOne({ _id: req.params.thoughtId })
+    Thoughts.findOne({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
@@ -21,7 +21,7 @@ module.exports = {
 
   // Create a new thought
   createThought(req, res) {
-    Thought.create(req.body)
+    Thoughts.create(req.body)
       .then((thought) => {
         // Push the created thought's _id to the associated user's thoughts array field
         return User.findOneAndUpdate(
@@ -36,7 +36,7 @@ module.exports = {
 
   // Update a thought by _id
   updateThought(req, res) {
-    Thought.findOneAndUpdate(
+    Thoughts.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $set: req.body },
       { runValidators: true, new: true }
@@ -51,7 +51,7 @@ module.exports = {
 
   // Remove a thought by _id
   removeThought(req, res) {
-    Thought.findOneAndDelete({ _id: req.params.thoughtId })
+    Thoughts.findOneAndDelete({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
@@ -62,7 +62,7 @@ module.exports = {
 
   // Create a new reaction to a thought
   createReaction(req, res) {
-    Thought.findOneAndUpdate(
+    Thoughts.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $push: { reactions: req.body } },
       { runValidators: true, new: true }
@@ -77,7 +77,7 @@ module.exports = {
 
   // Delete a reaction from a thought by thoughtId and reactionId
   deleteReaction(req, res) {
-    Thought.findOneAndUpdate(
+    Thoughts.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $pull: { reactions: { reactionId: req.params.reactionId } } },
       { runValidators: true, new: true }
